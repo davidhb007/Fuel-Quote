@@ -1,0 +1,231 @@
+
+html, body {
+  height: 100%;
+}
+
+body {
+  padding-top: 85px;
+}
+
+#top-bar-container {
+  height: 14vh !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+#top-navbar {
+  background-color: #ffffff !important;
+  opacity: 0.8;
+  overflow: hidden !important;
+}
+
+.navbar-brand {
+  font-size: 20px !important;
+  font-style: italic !important;
+  text-align: bottom !important;
+}
+
+.navbar-brand:hover {
+  text-shadow: 0px 6px 16px black !important;
+}
+
+.navbar-nav {
+  padding: 0 40px 0 20px !important;
+}
+
+.nav-link {
+  font-size: 120% !important;
+  color: #444 !important;
+  font-weight: 600 !important;
+}
+
+.nav-link:hover {
+  color: #222 !important;
+  text-shadow: 0px 6px 16px black !important;
+}
+
+.window {
+  height: 125vh;
+  overflow-y: scroll !important; 
+}
+
+#backgroundimg1 {
+  background-image: url("oil-barrel1.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: left top; 
+  background-clip: border-box;
+  background-repeat: no-repeat;
+  padding-top: 18vh;
+  height: 125vh;
+  width: cover !important;
+  overflow-y: scroll !important; 
+}
+
+#backgroundimg2 {
+  background-image: url("gas-station1.jpg"); 
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  padding-top: 18vh;
+  height: 125vh;
+  overflow-y: scroll !important;
+}
+
+.container {
+  background-color: rgba(109, 84, 75, 0.6) !important;
+  box-shadow: 0px 7px 10px #000 !important;
+  border-radius: 9px !important;
+}
+
+.jumbotron {
+  background-color: transparent !important;
+  color: #FFF !important;
+  font-weight: bolder !important;
+  font-size: 130% !important;
+  text-align: center !important;
+}
+
+.display-4 {
+  color: #EEE !important;
+  font-weight: 500 !important;
+}
+
+.lead {
+  font-weight: 400 !important;
+  font-size: 120% !important;
+  text-shadow: 0px 5px 14px black !important;
+}
+
+.jumbotron p {
+  font-size: 120% !important;
+  text-shadow: 0px 5px 14px black !important;
+}
+
+#message-panel {
+  max-width: 60px;
+  max-height: 30px;
+}
+
+#registration-container {
+  position: relative !important;
+  top: -90 !important;
+  width: 600px;
+  height: 85vh;
+  padding: 30px 40px;
+  background-color: rgba(229, 239, 241, 0.8) !important;
+}
+
+#loggedout-message-box {
+  width: 600px;
+  max-height: 20vh;
+  padding: 30px 40px 10px;
+  background-color: rgba(229, 239, 241, 0.8) !important;
+}
+
+#profile-page-containter {
+  width: 85vw !important;
+  height: 70%;
+  margin: 0px auto !important;
+  position: relative !important;
+  top: -90px !important;
+  padding: 0 !important;
+}
+
+#personal-info-pane {
+  margin: 5px 0 !important;
+  overflow: scroll !important;
+  height: 100% !important;
+  background-color: rgba(250, 250, 250, 0.7) !important;
+  box-shadow: 0px 15px 15px #000 !important;
+  float:left !important;
+  border-radius: 9px !important;
+}
+
+#personal-info-pane p {
+  font-size: 110%;
+  font-weight: 400;
+}
+
+#history-info-pane {
+  margin: 5px 0 !important;
+  padding: 0px !important;
+  overflow: scroll !important;
+  height: 100% !important;
+  background-color: rgba(250, 250, 250, 0.7) !important;
+  box-shadow: 0px 15px 15px #000 !important;
+  float:right !important;
+  border-radius: 9px !important;
+}
+
+#profile-page-link-btn-container {
+  margin: 0 auto;
+  width: 170px;
+  height: 70px;
+  background-color: rgba(250, 250, 250, 0.7);
+  box-shadow: 0px 15px 15px #333 !important;
+  border-radius: 50px;
+  position: relative;
+  top: 40px;
+}
+
+#history-info-pane #profile-page-link-btn-container {
+  position: relative;
+  top: 0px;
+}
+
+#profile-page-link-btn-container .btn {
+  margin: 0 auto !important;
+  font-size: 130% !important;
+  width: 170px !important;
+  height: 70px !important;
+  border-radius: 50px !important;
+}
+
+
+#edit-forms-containter {
+  width: 63vw !important;
+  overflow: scroll !important;
+  height: 80vh;
+  background-color: rgba(250, 250, 250, 0.7) !important;
+  margin: 0px auto !important;
+  position: relative !important;
+  top: -90px !important;
+}
+
+#update-btn-container {
+  margin: 10 auto;
+  width: 120px;
+  height: 0px;
+  background-color: rgba(250, 250, 250, 0.7);
+  box-shadow: 0px 15px 15px #333 !important;
+  border-radius: 30px;
+}
+
+#update-btn-container .form-group .btn{
+  margin: 0 auto;
+  width: 120px !important;
+  height: 60px !important;
+  border-radius: 30px !important;
+  box-shadow: 0px 15px 15px #333 !important;
+}
+
+#quote-hist-containter {
+  width: 100vw !important;
+  overflow: scroll !important;
+  height: 75vh;
+  background-color: rgba(250, 250, 250, 0.7) !important;
+  margin: 0px auto !important;
+  position: relative !important;
+  top: -70px !important;
+  text-align: center !important;
+}
+
+#request-form {
+  font-size: 140%;
+}
+
+#quote-buttons-container #profile-page-link-btn-container {
+  float: left;
+}

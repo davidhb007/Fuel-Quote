@@ -1,0 +1,63 @@
+<head>
+    <title>Fuel Price-Edit Profile</title>
+
+    </style>
+</head>
+
+{% extends "Fuel_Quote/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div id="backgroundimg2">
+
+  <div style="margin: 0 auto;">
+
+    <div class="row container"  id="edit-forms-containter">
+
+      <form method="POST" style="width: 100% !important;">
+
+        {% csrf_token %}
+
+        <div class="col" style="float:left !important; width: 50% !important;">
+
+          <fieldset class="form-group">
+                <legend class="border-bottom mb-4"> Update Personal Information</legend>
+
+                {{ profile_form|crispy }}
+          
+          </fieldset>
+
+        </div>
+
+        <div class="col" style="float:left !important; width: 50% !important;">
+
+          <fieldset class="form-group">
+              <legend class="border-bottom mb-4"> Update Address</legend>
+
+              {{ address_form|crispy }}
+
+          </fieldset>
+
+        </div>
+
+        <div class="row" id="update-btn-container">
+
+          <div class="form-group" style="margin: 0 auto; background-color: transparent; width: 120px !important; height: 60px !important;">
+            <button type="submit" class="btn btn-outline-info">Update</button>
+          </div>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+
+{% endblock %}

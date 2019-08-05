@@ -1,0 +1,131 @@
+<head>
+    <title>Fuel Price-Profile</title>
+</head>
+
+{% extends "Fuel_Quote/base.html" %}
+
+{% load tags %}
+
+{% load quoteHist_tag %}
+
+{% block content %}
+
+<div id="backgroundimg2">
+
+    <div id="profile-page-containter" class="row">
+
+        <div id="personal-info-pane" class="col-lg-4">
+
+            {% if profile_made %}
+                
+                <h2 style="text-align: center;font-size: 180%;">Personal information:</h2>
+
+                <hr>
+
+                <p style="font-size: 120%;"><strong>First name: </strong>{{first_name}}</p>
+                <p style="font-size: 120%;"><strong>Last name: </strong>{{last_name}}</p>
+                <p style="font-size: 120%;"><strong>Email: </strong>{{email}}</p>
+                <p style="font-size: 120%;"><strong>Address: </strong>{{address1}}</p>
+                {% if address2 %}
+                    <p style="font-size: 120%;"><strong>Address (continued): </strong>{{address2}}</p>
+                {% endif %}
+                <p style="font-size: 120%;"><strong>City: </strong>{{city}}</p>
+                <p style="font-size: 120%;"><strong>State: </strong>{{state}}</p>
+                <p style="font-size: 120%;padding-bottom: 0 !important;"><strong>Zipcode: </strong>{{zipcode}}</p>
+                
+                <div id="profile-page-link-btn-container">
+
+                    <a href="edit" class="btn btn-outline-info">Edit Your<br> Profile</a>
+
+                </div>
+
+            {% else %}
+
+                <h3 style="text-align: center;font-size: 180%;">Thank you for signing up!</h3>
+                <hr>
+                <p style="text-align: center; font-size: 120%;">
+                Congratulations for taking the first step towards saving on your future fuel orders with us!
+                Next, go ahead and click on the link bellow, it will take you to your profile edit page. There you can fill out the information required to complete your profile.
+                After that, you will be all set and good to go to get your first quote!
+                </p>
+
+                <div id="profile-page-link-btn-container">
+
+                    <a href="edit" class="btn btn-outline-info">Create Your Profile</a>
+
+                </div>
+                
+
+            {% endif %}
+
+        </div>
+
+        <div id="rate-info-pane" class="col-lg-4">
+
+        </div>
+
+        <div id="history-info-pane" class="col-lg-4" style="overflow-x: scroll;">
+
+            {% if profile_made %}
+
+                {% if has_quote_history %}
+            
+                    <h3 style="text-align: center;font-size: 180%;">Your Most Recent Quotes:</h3>
+
+                    <hr>
+
+                    <table class="table" style="width:90% !important;">
+                        
+                        <thead>
+                            <tr>
+                                <th style="text-align: center;font-size: 120%;" scope="col">Gallons</th>
+                                <th style="text-align: center;font-size: 120%;" scope="col">Rate</th>
+                                <th style="text-align: center;font-size: 120%;" scope="col">Total</th>
+                                <th style="text-align: center;font-size: 120%;" scope="col">Delivery</th>
+                            </tr>
+                        </thead>
+
+                        {% for quote in quote_set %}
+
+                        <tbody>
+
+                            <td style="text-align: center;font-size: 120%;">{{ quote.gallons }}</td>
+                            <td style="text-align: center;font-size: 120%;">{{ quote.price }}</td>
+                            <td style="text-align: center;font-size: 120%;">{{ quote.total }}</td>
+                            <td style="text-align: center;font-size: 120%;">{{ quote.date }}</td>
+
+                        </tbody>
+
+                        {% empty %}
+
+                        {% endfor %}
+
+                    </table>
+
+                    <div id="profile-page-link-btn-container">
+
+                        <a href='/quotes/history/' class="btn btn-outline-info">Full Quote History</a>
+
+                    </div>
+
+                {% else %}
+
+                    <h3 style="text-align: center;font-size: 180%;">Your Most Recent Quotes Will Appear Here</h3>
+
+                {% endif %}
+
+            {% else %}
+
+                <h3>Must create profile to view your quote history</h3>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+
+    
+
+{% endblock %}

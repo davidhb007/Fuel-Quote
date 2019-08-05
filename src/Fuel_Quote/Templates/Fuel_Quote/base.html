@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  {% load static %}
+  {% load tags %}
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+  <link rel="stylesheet" type="text/css" href="{% static 'Fuel_Quote/main.css' %}">
+  
+
+  <link rel="icon" href="{% static 'Fuel_Quote/icon.png' %}">
+
+  {% if title %}
+
+    <title>Fuel Price - {{title}}</title>
+
+  {% else %}
+
+    <title>Fuel Price</title>
+
+  {% endif %}
+  
+  {% block headspace %}
+  {% endblock %}
+
+</head>
+
+<body>
+
+    <div class="container" id="top-bar-container ">
+        
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top" role="navigation" id="top-navbar">
+
+          <a class="navbar-brand" href="{% url 'Home' %}">
+            <img src="{% static 'Fuel_Quote/Logo.png' %}" width="60" height="60" class="d-inline-block align-center" alt="">
+            H&P Fuel Rates</a>
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse justify-content-end" id="navbarToggle">
+
+            <ul class="navbar-nav mt-2 mt-lg-0">
+
+                {% if user.is_authenticated %}
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                    </li>
+
+                    {% if profile_made %}
+
+                      <li class="nav-item">
+                          <a class="nav-link" href="{% url 'quoteRequest' %}">Request Quote</a>
+                      </li>
+
+                      <li class="nav-item">
+                          <a class="nav-link" href="{% url 'quotehistory' %}">View Quotes History</a>
+                      </li>
+
+                    {% endif %}
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                    </li>
+
+                {% else %}
+              
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}"> 
+                        <img src=" {% static 'Fuel_Quote/login-icon.png' %} " width="25" height="25"> Login</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'register' %}">Register</a>
+                    </li>
+
+                {% endif %}
+
+              <li class="nav-item">
+                 <a class="nav-link" href="{% url 'About' %}" > About </a>
+             </li>
+
+            </ul>
+
+          </div>
+
+        </nav>  
+
+    </div> 
+
+
+    <div class="window">
+
+      {% if messages %}
+
+        <div class="row  message-pane container" id="message-panel">
+        
+            {% for message in messages %}
+
+             <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+             </div>
+
+            {% endfor %}
+
+        </div>
+
+      {% endif %}
+
+      {% block content %}
+
+      {% endblock %}
+
+    </div>
+    
+</body>
+</html>

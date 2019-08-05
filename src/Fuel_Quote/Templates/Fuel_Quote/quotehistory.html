@@ -1,0 +1,62 @@
+<head>
+    <title>Fuel Price-Quote History</title>
+</head>
+
+{% extends "Fuel_Quote/base.html" %}
+
+{% block content %}
+
+<div id="backgroundimg2">
+
+  <div class="row container" id="quote-hist-containter">
+    
+    <table class="table">
+
+      <h2>Your Quotes Records</h2>
+
+      <hr>
+
+      <thead>
+
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Gallons Requested</th>
+          <th scope="col">Delivery Address</th>
+          <th scope="col">Delivery Date</th>
+          <th scope="col">Rate</th>
+          <th scope="col">Total</th>
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        {% for quote in object_list %}
+
+          <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td>{{ quote.gallons }}</td>
+            <td>{{ addr }}</td>
+            <td>{{ quote.date }}</td>
+            <td>{{ quote.price }}</td>
+            <td>{{ quote.total }}</td>
+          </tr>
+
+        {% empty %}
+
+        <tr>
+          <td></td>
+          <th scope="row">No Data</th>
+        </tr>
+
+        {% endfor %}
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>
+
+{% endblock %}

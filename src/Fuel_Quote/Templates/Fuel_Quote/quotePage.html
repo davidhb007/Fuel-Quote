@@ -1,0 +1,151 @@
+<head>
+    <title>Fuel Price-Request Quote</title>
+</head>
+
+{% extends "Fuel_Quote/base.html" %}
+
+{% block content %}
+
+<script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+
+    $( "#gallons" ).change(function() {
+
+        document.getElementById("total_field").value = Math.ceil(document.getElementById("pr").value * $("#gallons").val() * 100 / 100).toFixed(2)
+    });
+    $(document).on("click", "#get_price", function(){
+        let price = 0.0;
+        let is_valid = true;
+        if(document.getElementById("gallons").value <= 0)
+        {
+          $('#gal_err_lab').text("Please enter a positive integer.");
+          is_valid = false;
+        }
+        else {
+            $('#gal_err_lab').text("");
+        }
+        if(document.getElementById("delivery_date").value == '')
+        {
+          $('#date_err_lab').text("Please enter a valid future date.");
+          is_valid = false;
+        }
+        else {
+          date1 = new Date(document.getElementById("delivery_date").value);
+          date2 = new Date();
+          if(date1 < date2)
+          {
+            $('#date_err_lab').text("Please enter a valid future date.");
+            is_valid = false;
+          }
+          else {
+            $('#date_err_lab').text("");
+          }
+        }
+        if(is_valid)
+        {
+          let base_price = 1.50
+          let location_factor = 0.04;
+          if('{{state}}' == 'TX')
+            location_factor = 0.02;
+          let hist_factor = 0;
+          if('{{hist}}'=='True')
+            hist_factor = 0.01;
+          let gal_factor = 0.03;
+          if(document.getElementById("gallons").value > 1000)
+            gal_factor = 0.02;
+          let fluc_factor = 0.04;
+          let ddate = new Date(document.getElementById("delivery_date").value);
+          if(ddate.getMonth() < 5 || ddate.getMonth() > 7)
+            fluc_factor = 0.03;
+          margin = base_price*(location_factor-hist_factor+gal_factor+.1+fluc_factor);
+          price = base_price + margin;
+          document.getElementById("pr").value = Math.round(price * 100)/100;
+          document.getElementById("total_field").value = Math.round((price*document.getElementById("gallons").value) * 100)/100;
+        }
+    });
+  });
+
+</script>
+
+<div id="backgroundimg2">
+
+<div style="margin: 0 auto;">
+
+  <div class="row container"  id="edit-forms-containter">
+
+    <form method="POST" style="width: 100% !important;">
+
+      <div class="col" style="width: 100% !important;height: 45vh !important">
+
+      {% if form.errors %}
+        {% for field in form %}
+         {% for error in field.errors %}
+            <div>
+              {{ error|escape }}
+            </div>
+          {% endfor %}
+        {% endfor %}
+
+        {% for error in form.non_field_errors %}
+          <div>
+            {{ error|escape }}
+          </div>
+        {% endfor %}
+      {% endif %}
+
+      {% csrf_token %}
+
+      <fieldset id="request-form" class="row form-group" style="margin-bottom:0;">
+        <legend class="border-bottom mb-4" style="font-size: 200%;text-align: center;">Quote Request Form</legend>
+
+          <p>
+          Date Of Delivery: <input type="date" id="delivery_date" style="width: 200px;" name="delivery_date" value="{{del_date}}"><label id="date_err_lab">{{date_err}}</label>
+          </p>
+
+          <p>
+          Address: <input type="text" name="addr" value="{{addr}}" style="min-width: 33%;max-width: 90%;" readonly>
+          </p>
+
+          <p>
+          Gallons: <input type="number" id="gallons" style="width: 140px;" name="gallons" value="{{gals}}"><label id="gal_err_lab">{{gal_err}}</label>
+          </p>
+
+          <p>
+          Price: <input type="text" id="pr" value="--" name="pr" style="width: 120px;" readonly><label id="pr_err_lab">{{pr_err}}</label>
+          </p>
+
+          <p>
+          Total: <input id="total_field" type="text" name="tot" style="width: 120px;" value="--" readonly><label id="tot_err_lab">{{tot_err}}</label>
+          </p>
+        
+      </fieldset>
+
+      </div>
+
+      <div class="row" id="quote-buttons-container" style="margin-top:100px;">
+
+        <div id="profile-page-link-btn-container">
+          <button type="button" class="btn btn-outline-info" id="get_price">Get Price</button>
+        </div>
+
+        <div id="profile-page-link-btn-container">
+          <button type="submit" class="btn btn-outline-info">Request</button>
+        </div>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+</div>
+
+
+
+
+
+{% endblock %}
