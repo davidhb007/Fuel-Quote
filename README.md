@@ -24,12 +24,12 @@ pip install Babel==2.7.0
 pip install django-crispy-forms==1.7.2
 pip install django-localflavor==2.2
 pip install python-stdnum==1.11
-pip install pytz 2019.1
+pip install pytz==2019.1
 ```
 
 ## Download
 ```
-git clone
+git clone https://github.com/davidhb007/Fuel-Quote.git
 ```
 
 ## Run
